@@ -39,53 +39,44 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initial styling update
     updateSelectionStyling();
 
-    // Color picker functionality
+    // Professional Custom Color Picker System
+    let currentColorPicker = null;
+    let selectedColors = [];
+    let maxColors = 2;
+
+    // Initialize color picker data
+    const colorPickerData = {
+        primaryColors: ['#1f71b7', '#0d4a73'],
+        secondaryColors: ['#f58220', '#ff9f4a'],
+        avoidColors: ['#ff0000']
+    };
+
+    // Color name mapping function
     function hexToColorName(hex) {
         const colorNames = {
-            '#ff0000': 'أحمر',
-            '#ff4500': 'أحمر برتقالي',
-            '#ffa500': 'برتقالي',
-            '#ffff00': 'أصفر',
-            '#9acd32': 'أصفر مخضر',
-            '#00ff00': 'أخضر',
-            '#00ffff': 'سماوي',
-            '#0000ff': 'أزرق',
-            '#4b0082': 'نيلي',
-            '#9400d3': 'بنفسجي',
-            '#ff1493': 'وردي',
-            '#ff69b4': 'وردي فاتح',
-            '#ffc0cb': 'زهري',
-            '#ffffff': 'أبيض',
-            '#000000': 'أسود',
-            '#808080': 'رمادي',
-            '#c0c0c0': 'فضي',
-            '#800000': 'أحمر داكن',
-            '#808000': 'زيتوني',
-            '#008000': 'أخضر داكن',
-            '#800080': 'بنفسجي داكن',
-            '#008080': 'أزرق مخضر',
-            '#000080': 'أزرق داكن',
-            '#a52a2a': 'بني',
-            '#daa520': 'ذهبي',
-            '#dc143c': 'أحمر قرمزي',
-            '#b22222': 'أحمر طوبي',
-            '#228b22': 'أخضر غابات',
-            '#32cd32': 'أخضر ليموني',
-            '#4169e1': 'أزرق ملكي',
-            '#6495ed': 'أزرق كورن فلاور',
-            '#7b68ee': 'بنفسجي متوسط',
-            '#ba55d3': 'أوركيد متوسط',
-            '#1f71b7': 'أزرق احترافي',
-            '#f58220': 'برتقالي دافئ'
+            '#ff0000': 'أحمر', '#ff4500': 'أحمر برتقالي', '#ffa500': 'برتقالي', '#ffd700': 'ذهبي',
+            '#ffff00': 'أصفر', '#9acd32': 'أصفر مخضر', '#32cd32': 'أخضر ليموني', '#00ff00': 'أخضر',
+            '#00ced1': 'تركوازي', '#00ffff': 'سماوي', '#0000ff': 'أزرق', '#4169e1': 'أزرق ملكي',
+            '#8a2be2': 'بنفسجي أزرق', '#9400d3': 'بنفسجي', '#ff1493': 'وردي غامق', '#ff69b4': 'وردي فاتح',
+            '#000000': 'أسود', '#2f2f2f': 'رمادي داكن جداً', '#505050': 'رمادي داكن', '#808080': 'رمادي',
+            '#a9a9a9': 'رمادي فاتح', '#c0c0c0': 'فضي', '#d3d3d3': 'رمادي فاتح جداً', '#ffffff': 'أبيض',
+            '#f5f5dc': 'بيج', '#deb887': 'بني فاتح', '#8b4513': 'بني', '#654321': 'بني داكن',
+            '#ffb6c1': 'وردي باستيل', '#ffc0cb': 'زهري', '#ffcccb': 'أحمر باستيل', '#ffe4b5': 'برتقالي باستيل',
+            '#fffacd': 'أصفر باستيل', '#98fb98': 'أخضر باستيل', '#afeeee': 'تركوازي باستيل',
+            '#add8e6': 'أزرق باستيل', '#e6e6fa': 'بنفسجي باستيل', '#dda0dd': 'برقوقي',
+            '#f0e68c': 'خاكي فاتح', '#e0ffff': 'سماوي فاتح',
+            '#1f71b7': 'أزرق احترافي', '#0d4a73': 'أزرق عميق', '#f58220': 'برتقالي دافئ',
+            '#ff9f4a': 'برتقالي فاتح', '#2e7d32': 'أخضر احترافي', '#c62828': 'أحمر احترافي',
+            '#6a1b9a': 'بنفسجي احترافي', '#f57c00': 'برتقالي غامق', '#5d4037': 'بني احترافي',
+            '#37474f': 'رمادي أزرق', '#283593': 'نيلي', '#d32f2f': 'أحمر غامق'
         };
         
-        // تحويل الهيكس إلى أسماء
         const lowerHex = hex.toLowerCase();
         if (colorNames[lowerHex]) {
             return colorNames[lowerHex];
         }
         
-        // إذا لم يجد اللون بالضبط، يحاول إيجاد أقرب لون
+        // التحليل التلقائي للألوان
         const r = parseInt(hex.slice(1, 3), 16);
         const g = parseInt(hex.slice(3, 5), 16);
         const b = parseInt(hex.slice(5, 7), 16);
@@ -99,52 +90,186 @@ document.addEventListener('DOMContentLoaded', function() {
         if (r > 200 && g < 100 && b > 200) return 'وردي';
         if (r < 100 && g > 100 && b > 200) return 'سماوي';
         
-        return hex; // إرجاع الكود إذا لم يجد اسم
+        return hex;
     }
 
-    // ربط منتقي الألوان بحقول النص
-    const colorPickers = [
-        { picker1: 'primaryColorsColor1', picker2: 'primaryColorsColor2', text: 'primaryColors' },
-        { picker1: 'secondaryColorsColor1', picker2: 'secondaryColorsColor2', text: 'secondaryColors' },
-        { picker: 'avoidColorsColor', text: 'avoidColors' }
-    ];
+    // Initialize custom color pickers
+    function initializeCustomColorPickers() {
+        const colorPickerGroups = document.querySelectorAll('.custom-color-picker-group');
+        
+        colorPickerGroups.forEach(group => {
+            const target = group.dataset.target;
+            const openBtn = group.querySelector('.open-color-picker-btn');
+            const textInput = group.querySelector(`#${target}`);
+            
+            // Set max colors
+            maxColors = group.dataset.max ? parseInt(group.dataset.max) : 2;
+            
+            // Update display
+            updateColorDisplay(target);
+            
+            // Open color picker
+            openBtn.addEventListener('click', () => {
+                openColorPicker(target);
+            });
+        });
+    }
 
-    colorPickers.forEach((config) => {
-        if (config.picker1 && config.picker2) {
-            // للألوان التي تحتاج لونين
-            const colorInput1 = document.getElementById(config.picker1);
-            const colorInput2 = document.getElementById(config.picker2);
-            const textInput = document.getElementById(config.text);
-            
-            if (colorInput1 && colorInput2 && textInput) {
-                function updateTwoColors() {
-                    const colorName1 = hexToColorName(colorInput1.value);
-                    const colorName2 = hexToColorName(colorInput2.value);
-                    textInput.value = `${colorName1} (${colorInput1.value}) + ${colorName2} (${colorInput2.value})`;
-                }
-                
-                colorInput1.addEventListener('input', updateTwoColors);
-                colorInput2.addEventListener('input', updateTwoColors);
-                
-                // تعيين القيم الافتراضية
-                updateTwoColors();
+    // Update color display
+    function updateColorDisplay(target) {
+        const group = document.querySelector(`[data-target="${target}"]`);
+        const selectedColorBoxes = group.querySelectorAll('.selected-color-box');
+        const textInput = document.getElementById(target);
+        const colors = colorPickerData[target] || [];
+        
+        // Update color boxes
+        selectedColorBoxes.forEach((box, index) => {
+            if (colors[index]) {
+                box.style.backgroundColor = colors[index];
+                box.style.border = `3px solid ${colors[index]}`;
             }
-        } else if (config.picker) {
-            // للألوان التي تحتاج لون واحد
-            const colorInput = document.getElementById(config.picker);
-            const textInput = document.getElementById(config.text);
-            
-            if (colorInput && textInput) {
-                colorInput.addEventListener('input', function() {
-                    const colorName = hexToColorName(this.value);
-                    textInput.value = colorName + ' (' + this.value + ')';
-                });
-                
-                const initialColorName = hexToColorName(colorInput.value);
-                textInput.value = initialColorName + ' (' + colorInput.value + ')';
+        });
+        
+        // Update text input
+        if (colors.length > 0) {
+            const colorNames = colors.map(color => {
+                const name = hexToColorName(color);
+                return `${name} (${color})`;
+            });
+            textInput.value = colorNames.join(' + ');
+        }
+    }
+
+    // Open color picker modal
+    function openColorPicker(target) {
+        currentColorPicker = target;
+        selectedColors = [...(colorPickerData[target] || [])];
+        maxColors = document.querySelector(`[data-target="${target}"]`).dataset.max ? 
+                   parseInt(document.querySelector(`[data-target="${target}"]`).dataset.max) : 2;
+        
+        const modal = document.getElementById('colorPickerModal');
+        modal.classList.add('active');
+        
+        updateModalDisplay();
+        
+        // Prevent body scroll
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Close color picker modal
+    function closeColorPicker() {
+        const modal = document.getElementById('colorPickerModal');
+        modal.classList.remove('active');
+        
+        // Restore body scroll
+        document.body.style.overflow = '';
+        
+        currentColorPicker = null;
+        selectedColors = [];
+    }
+
+    // Update modal display
+    function updateModalDisplay() {
+        const colorItems = document.querySelectorAll('.color-item');
+        const previewColors = document.querySelector('.preview-colors');
+        
+        // Update color item selections
+        colorItems.forEach(item => {
+            const color = item.dataset.color;
+            if (selectedColors.includes(color)) {
+                item.classList.add('selected');
+            } else {
+                item.classList.remove('selected');
+            }
+        });
+        
+        // Update preview
+        previewColors.innerHTML = '';
+        selectedColors.forEach(color => {
+            const previewColor = document.createElement('div');
+            previewColor.className = 'preview-color';
+            previewColor.style.backgroundColor = color;
+            previewColors.appendChild(previewColor);
+        });
+    }
+
+    // Handle color selection
+    function handleColorSelection(color) {
+        const index = selectedColors.indexOf(color);
+        
+        if (index > -1) {
+            // Remove color
+            selectedColors.splice(index, 1);
+        } else {
+            // Add color
+            if (selectedColors.length < maxColors) {
+                selectedColors.push(color);
+            } else {
+                // Replace last color
+                selectedColors[maxColors - 1] = color;
             }
         }
-    });
+        
+        updateModalDisplay();
+    }
+
+    // Confirm color selection
+    function confirmColorSelection() {
+        if (currentColorPicker && selectedColors.length > 0) {
+            colorPickerData[currentColorPicker] = [...selectedColors];
+            updateColorDisplay(currentColorPicker);
+        }
+        closeColorPicker();
+    }
+
+    // Initialize color picker events
+    function initializeColorPickerEvents() {
+        const modal = document.getElementById('colorPickerModal');
+        const closeBtn = document.querySelector('.close-color-picker');
+        const cancelBtn = document.getElementById('cancelColorPicker');
+        const confirmBtn = document.getElementById('confirmColorPicker');
+        const colorItems = document.querySelectorAll('.color-item');
+        
+        // Close events
+        closeBtn.addEventListener('click', closeColorPicker);
+        cancelBtn.addEventListener('click', closeColorPicker);
+        
+        // Confirm event
+        confirmBtn.addEventListener('click', confirmColorSelection);
+        
+        // Color selection events
+        colorItems.forEach(item => {
+            const color = item.dataset.color;
+            const name = item.dataset.name;
+            
+            // Set background color
+            item.style.backgroundColor = color;
+            item.title = name;
+            
+            // Click event
+            item.addEventListener('click', () => {
+                handleColorSelection(color);
+            });
+        });
+        
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeColorPicker();
+            }
+        });
+        
+        // ESC key to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeColorPicker();
+            }
+        });
+    }
+
+    // Initialize everything
+    initializeCustomColorPickers();
+    initializeColorPickerEvents();
 
     // Show/hide existing logo details based on radio selection with safety checks
     if (hasExistingLogoRadios && hasExistingLogoRadios.length > 0) {
@@ -325,6 +450,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         }
+
+        // Add custom color picker data
+        Object.keys(colorPickerData).forEach(key => {
+            const colors = colorPickerData[key];
+            if (colors && colors.length > 0) {
+                const colorNames = colors.map(color => {
+                    const name = hexToColorName(color);
+                    return `${name} (${color})`;
+                });
+                data[key] = colorNames.join(' + ');
+            }
+        });
 
         // Convert arrays to comma-separated strings for Google Sheets
         Object.keys(data).forEach(key => {

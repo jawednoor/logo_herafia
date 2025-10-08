@@ -234,29 +234,38 @@
                 
                 <div class="form-group required">
                     <label for="primaryColors">الألوان المفضّلة الأساسية</label>
-                    <small class="help-text color-help">اختر لونين أساسيين - اضغط على المربعات الملونة</small>
-                    <div class="color-input-group">
-                        <input type="color" id="primaryColorsColor1" class="color-picker" value="#1f71b7">
-                        <input type="color" id="primaryColorsColor2" class="color-picker" value="#0d4a73">
+                    <small class="help-text color-help">اختر لونين أساسيين من لوحة الألوان</small>
+                    <div class="custom-color-picker-group" data-target="primaryColors">
+                        <div class="selected-colors">
+                            <div class="selected-color-box" data-index="0" style="background-color: #1f71b7;"></div>
+                            <div class="selected-color-box" data-index="1" style="background-color: #0d4a73;"></div>
+                        </div>
+                        <button type="button" class="open-color-picker-btn">اختيار الألوان</button>
                         <input type="text" id="primaryColors" name="primaryColors" required placeholder="سيظهر اللونان المختاران هنا..." readonly>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="secondaryColors">الألوان الثانوية المفضّلة</label>
-                    <small class="help-text color-help">اختر لونين ثانويين - اضغط على المربعات الملونة</small>
-                    <div class="color-input-group">
-                        <input type="color" id="secondaryColorsColor1" class="color-picker" value="#f58220">
-                        <input type="color" id="secondaryColorsColor2" class="color-picker" value="#ff9f4a">
+                    <small class="help-text color-help">اختر لونين ثانويين من لوحة الألوان</small>
+                    <div class="custom-color-picker-group" data-target="secondaryColors">
+                        <div class="selected-colors">
+                            <div class="selected-color-box" data-index="0" style="background-color: #f58220;"></div>
+                            <div class="selected-color-box" data-index="1" style="background-color: #ff9f4a;"></div>
+                        </div>
+                        <button type="button" class="open-color-picker-btn">اختيار الألوان</button>
                         <input type="text" id="secondaryColors" name="secondaryColors" placeholder="سيظهر اللونان المختاران هنا..." readonly>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="avoidColors">ألوان ترغب بتجنّبها</label>
-                    <small class="help-text color-help">اضغط على المربع الملون لاختيار اللون المرفوض</small>
-                    <div class="color-input-group">
-                        <input type="color" id="avoidColorsColor" class="color-picker" value="#ff0000">
+                    <small class="help-text color-help">اختر الألوان التي لا تريدها في الشعار</small>
+                    <div class="custom-color-picker-group" data-target="avoidColors" data-max="1">
+                        <div class="selected-colors">
+                            <div class="selected-color-box" data-index="0" style="background-color: #ff0000;"></div>
+                        </div>
+                        <button type="button" class="open-color-picker-btn">اختيار اللون</button>
                         <input type="text" id="avoidColors" name="avoidColors" placeholder="الألوان التي لا تريدها في الشعار..." readonly>
                     </div>
                 </div>
@@ -366,6 +375,109 @@
                 <button type="reset" class="reset-btn">مسح الاستبيان</button>
             </div>
         </form>
+    </div>
+
+    <!-- Professional Color Picker Modal -->
+    <div id="colorPickerModal" class="color-picker-modal">
+        <div class="color-picker-content">
+            <div class="color-picker-header">
+                <h3>اختيار الألوان</h3>
+                <button type="button" class="close-color-picker">&times;</button>
+            </div>
+            
+            <div class="color-palette">
+                <!-- الألوان الأساسية -->
+                <div class="color-section">
+                    <h4>الألوان الأساسية</h4>
+                    <div class="color-grid">
+                        <div class="color-item" data-color="#FF0000" data-name="أحمر"></div>
+                        <div class="color-item" data-color="#FF4500" data-name="أحمر برتقالي"></div>
+                        <div class="color-item" data-color="#FFA500" data-name="برتقالي"></div>
+                        <div class="color-item" data-color="#FFD700" data-name="ذهبي"></div>
+                        <div class="color-item" data-color="#FFFF00" data-name="أصفر"></div>
+                        <div class="color-item" data-color="#9ACD32" data-name="أصفر مخضر"></div>
+                        <div class="color-item" data-color="#32CD32" data-name="أخضر ليموني"></div>
+                        <div class="color-item" data-color="#00FF00" data-name="أخضر"></div>
+                        <div class="color-item" data-color="#00CED1" data-name="تركوازي"></div>
+                        <div class="color-item" data-color="#00FFFF" data-name="سماوي"></div>
+                        <div class="color-item" data-color="#0000FF" data-name="أزرق"></div>
+                        <div class="color-item" data-color="#4169E1" data-name="أزرق ملكي"></div>
+                        <div class="color-item" data-color="#8A2BE2" data-name="بنفسجي أزرق"></div>
+                        <div class="color-item" data-color="#9400D3" data-name="بنفسجي"></div>
+                        <div class="color-item" data-color="#FF1493" data-name="وردي غامق"></div>
+                        <div class="color-item" data-color="#FF69B4" data-name="وردي فاتح"></div>
+                    </div>
+                </div>
+
+                <!-- الألوان المحايدة -->
+                <div class="color-section">
+                    <h4>الألوان المحايدة</h4>
+                    <div class="color-grid">
+                        <div class="color-item" data-color="#000000" data-name="أسود"></div>
+                        <div class="color-item" data-color="#2F2F2F" data-name="رمادي داكن جداً"></div>
+                        <div class="color-item" data-color="#505050" data-name="رمادي داكن"></div>
+                        <div class="color-item" data-color="#808080" data-name="رمادي"></div>
+                        <div class="color-item" data-color="#A9A9A9" data-name="رمادي فاتح"></div>
+                        <div class="color-item" data-color="#C0C0C0" data-name="فضي"></div>
+                        <div class="color-item" data-color="#D3D3D3" data-name="رمادي فاتح جداً"></div>
+                        <div class="color-item" data-color="#FFFFFF" data-name="أبيض"></div>
+                        <div class="color-item" data-color="#F5F5DC" data-name="بيج"></div>
+                        <div class="color-item" data-color="#DEB887" data-name="بني فاتح"></div>
+                        <div class="color-item" data-color="#8B4513" data-name="بني"></div>
+                        <div class="color-item" data-color="#654321" data-name="بني داكن"></div>
+                    </div>
+                </div>
+
+                <!-- ألوان الباستيل -->
+                <div class="color-section">
+                    <h4>ألوان الباستيل</h4>
+                    <div class="color-grid">
+                        <div class="color-item" data-color="#FFB6C1" data-name="وردي باستيل"></div>
+                        <div class="color-item" data-color="#FFC0CB" data-name="زهري"></div>
+                        <div class="color-item" data-color="#FFCCCB" data-name="أحمر باستيل"></div>
+                        <div class="color-item" data-color="#FFE4B5" data-name="برتقالي باستيل"></div>
+                        <div class="color-item" data-color="#FFFACD" data-name="أصفر باستيل"></div>
+                        <div class="color-item" data-color="#98FB98" data-name="أخضر باستيل"></div>
+                        <div class="color-item" data-color="#AFEEEE" data-name="تركوازي باستيل"></div>
+                        <div class="color-item" data-color="#ADD8E6" data-name="أزرق باستيل"></div>
+                        <div class="color-item" data-color="#E6E6FA" data-name="بنفسجي باستيل"></div>
+                        <div class="color-item" data-color="#DDA0DD" data-name="برقوقي"></div>
+                        <div class="color-item" data-color="#F0E68C" data-name="خاكي فاتح"></div>
+                        <div class="color-item" data-color="#E0FFFF" data-name="سماوي فاتح"></div>
+                    </div>
+                </div>
+
+                <!-- ألوان احترافية للبراندات -->
+                <div class="color-section">
+                    <h4>ألوان احترافية</h4>
+                    <div class="color-grid">
+                        <div class="color-item" data-color="#1f71b7" data-name="أزرق احترافي"></div>
+                        <div class="color-item" data-color="#0d4a73" data-name="أزرق عميق"></div>
+                        <div class="color-item" data-color="#f58220" data-name="برتقالي دافئ"></div>
+                        <div class="color-item" data-color="#ff9f4a" data-name="برتقالي فاتح"></div>
+                        <div class="color-item" data-color="#2E7D32" data-name="أخضر احترافي"></div>
+                        <div class="color-item" data-color="#C62828" data-name="أحمر احترافي"></div>
+                        <div class="color-item" data-color="#6A1B9A" data-name="بنفسجي احترافي"></div>
+                        <div class="color-item" data-color="#F57C00" data-name="برتقالي غامق"></div>
+                        <div class="color-item" data-color="#5D4037" data-name="بني احترافي"></div>
+                        <div class="color-item" data-color="#37474F" data-name="رمادي أزرق"></div>
+                        <div class="color-item" data-color="#283593" data-name="نيلي"></div>
+                        <div class="color-item" data-color="#D32F2F" data-name="أحمر غامق"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="color-picker-footer">
+                <div class="selected-colors-preview">
+                    <span>الألوان المختارة:</span>
+                    <div class="preview-colors"></div>
+                </div>
+                <div class="color-picker-buttons">
+                    <button type="button" class="btn-secondary" id="cancelColorPicker">إلغاء</button>
+                    <button type="button" class="btn-primary" id="confirmColorPicker">تأكيد</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
