@@ -157,6 +157,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (colors[index]) {
                 box.style.backgroundColor = colors[index];
                 box.style.border = `3px solid ${colors[index]}`;
+            } else {
+                // Reset to default appearance when no color selected
+                box.style.backgroundColor = '#f5f5f5';
+                box.style.border = '2px dashed #ddd';
             }
         });
         
@@ -167,6 +171,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 return `${name} (${color})`;
             });
             textInput.value = colorNames.join(' + ');
+        } else {
+            // Clear input when no colors selected
+            textInput.value = '';
         }
     }
 
@@ -252,12 +259,23 @@ document.addEventListener('DOMContentLoaded', function() {
         closeColorPicker();
     }
 
+    // Clear color selection
+    function clearColorSelection() {
+        if (currentColorPicker) {
+            selectedColors = [];
+            colorPickerData[currentColorPicker] = [];
+            updateModalDisplay();
+            updateColorDisplay(currentColorPicker);
+        }
+    }
+
     // Initialize color picker events
     function initializeColorPickerEvents() {
         const modal = document.getElementById('colorPickerModal');
         const closeBtn = document.querySelector('.close-color-picker');
         const cancelBtn = document.getElementById('cancelColorPicker');
         const confirmBtn = document.getElementById('confirmColorPicker');
+        const clearBtn = document.getElementById('clearColorSelection');
         const colorItems = document.querySelectorAll('.color-item');
         
         // Close events
@@ -266,6 +284,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Confirm event
         confirmBtn.addEventListener('click', confirmColorSelection);
+        
+        // Clear selection event
+        clearBtn.addEventListener('click', clearColorSelection);
         
         // Color selection events
         colorItems.forEach(item => {
