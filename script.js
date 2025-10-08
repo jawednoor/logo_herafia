@@ -4,16 +4,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const hasExistingLogoRadios = document.querySelectorAll('input[name="hasExistingLogo"]');
     const existingLogoDetails = document.getElementById('existingLogoDetails');
 
-    // Enhanced selection styling for radio buttons and checkboxes
+    // Enhanced selection styling for radio buttons and checkboxes - Cross-browser compatible
     function updateSelectionStyling() {
         // Handle radio buttons
         const radioInputs = document.querySelectorAll('input[type="radio"]');
         radioInputs.forEach(radio => {
             const label = radio.closest('.radio-label');
-            if (radio.checked) {
-                label.classList.add('selected');
-            } else {
-                label.classList.remove('selected');
+            if (label) {
+                if (radio.checked) {
+                    label.classList.add('selected');
+                } else {
+                    label.classList.remove('selected');
+                }
             }
         });
 
@@ -21,22 +23,29 @@ document.addEventListener('DOMContentLoaded', function() {
         const checkboxInputs = document.querySelectorAll('input[type="checkbox"]');
         checkboxInputs.forEach(checkbox => {
             const label = checkbox.closest('.checkbox-label');
-            if (checkbox.checked) {
-                label.classList.add('selected');
-            } else {
-                label.classList.remove('selected');
+            if (label) {
+                if (checkbox.checked) {
+                    label.classList.add('selected');
+                } else {
+                    label.classList.remove('selected');
+                }
             }
         });
     }
 
-    // Add event listeners for all radio buttons and checkboxes
+    // Add event listeners for all radio buttons and checkboxes with cross-browser support
     const allInputs = document.querySelectorAll('input[type="radio"], input[type="checkbox"]');
     allInputs.forEach(input => {
+        // Add multiple event types for better compatibility
         input.addEventListener('change', updateSelectionStyling);
+        input.addEventListener('click', function() {
+            // Small delay to ensure the checked state is updated
+            setTimeout(updateSelectionStyling, 10);
+        });
     });
 
-    // Initial styling update
-    updateSelectionStyling();
+    // Initial styling update with delay to ensure DOM is ready
+    setTimeout(updateSelectionStyling, 100);
 
     // Professional Custom Color Picker System
     let currentColorPicker = null;
