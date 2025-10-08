@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('logoSurveyForm');
     const hasExistingLogoRadios = document.querySelectorAll('input[name="hasExistingLogo"]');
     const existingLogoDetails = document.getElementById('existingLogoDetails');
-    const logoUpload = document.getElementById('logoUpload');
 
     // Enhanced selection styling for radio buttons and checkboxes
     function updateSelectionStyling() {
@@ -312,110 +311,20 @@ document.addEventListener('DOMContentLoaded', function() {
                             existingLogoDetails.style.display = 'block';
                             existingLogoDetails.classList.add('fade-in');
                         }
-                        if (logoUpload) {
-                            logoUpload.style.display = 'block';
-                            logoUpload.classList.add('fade-in');
-                        }
-                        // جعل رفع الملف مطلوباً عند اختيار "نعم"
-                        const existingLogoFileInput = document.getElementById('existingLogoFile');
-                        if (existingLogoFileInput) {
-                            existingLogoFileInput.setAttribute('required', 'required');
-                        }
                     } else {
                         if (existingLogoDetails) {
                             existingLogoDetails.style.display = 'none';
                         }
-                        if (logoUpload) {
-                            logoUpload.style.display = 'none';
-                        }
                         const existingLogoChangesInput = document.getElementById('existingLogoChanges');
-                        const existingLogoFileInput = document.getElementById('existingLogoFile');
                         
                         if (existingLogoChangesInput) {
                             existingLogoChangesInput.value = '';
-                        }
-                        if (existingLogoFileInput) {
-                            existingLogoFileInput.value = '';
-                            existingLogoFileInput.removeAttribute('required');
                         }
                     }
                 });
             }
         });
     }
-
-    // File upload validation للشعارات الثلاثة
-    const logoExample1Input = document.getElementById('logoExample1');
-    const logoExample2Input = document.getElementById('logoExample2');
-    const logoExample3Input = document.getElementById('logoExample3');
-    
-    // التحقق من صحة الملفات المرفوعة
-    function validateFileUpload(input) {
-        if (input && input.files.length > 0) {
-            const file = input.files[0];
-            const maxSize = 5 * 1024 * 1024; // 5MB
-            
-            if (file.size > maxSize) {
-                alert('حجم الملف كبير جداً. يرجى اختيار ملف أقل من 5MB');
-                input.value = '';
-                return false;
-            }
-            
-            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'application/pdf'];
-            if (!allowedTypes.includes(file.type)) {
-                alert('نوع الملف غير مدعوم. يرجى اختيار صورة (JPG, PNG, GIF) أو ملف PDF');
-                input.value = '';
-                return false;
-            }
-            
-            console.log('تم اختيار ملف صحيح:', file.name);
-            return true;
-        }
-        return true;
-    }
-    
-    // إضافة مستمعين للأحداث
-    if (logoExample1Input) {
-        logoExample1Input.addEventListener('change', function() {
-            validateFileUpload(this);
-        });
-    }
-    
-    if (logoExample2Input) {
-        logoExample2Input.addEventListener('change', function() {
-            validateFileUpload(this);
-        });
-    }
-    
-    if (logoExample3Input) {
-        logoExample3Input.addEventListener('change', function() {
-            validateFileUpload(this);
-        });
-    }
-
-    // Existing logo file validation
-    const existingLogoFileInput = document.getElementById('existingLogoFile');
-    existingLogoFileInput.addEventListener('change', function() {
-        if (this.files.length > 0) {
-            const file = this.files[0];
-            const maxSize = 5 * 1024 * 1024; // 5MB
-            
-            if (file.size > maxSize) {
-                alert('حجم الملف كبير جداً. يرجى اختيار ملف أقل من 5MB');
-                this.value = '';
-                return;
-            }
-            
-            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'application/pdf'];
-            if (!allowedTypes.includes(file.type)) {
-                alert('نوع الملف غير مدعوم. يرجى اختيار صورة (JPG, PNG, GIF) أو ملف PDF');
-                this.value = '';
-                return;
-            }
-            
-            console.log('تم اختيار ملف صحيح:', file.name);
-        }
-    });
 
     // Form validation
     form.addEventListener('submit', function(e) {
