@@ -716,8 +716,25 @@ document.addEventListener('DOMContentLoaded', function() {
             input.addEventListener('blur', function() {
                 validateField(this);
             });
-            
+
             input.addEventListener('input', function() {
+                // Special handling for fullName field
+                if (this.id === 'fullName') {
+                    const helpText = this.parentNode.querySelector('.help-text');
+                    if (helpText) {
+                        const words = this.value.trim().split(/\s+/);
+                        if (words.length < 3 && this.value.trim() !== '') {
+                            helpText.style.display = 'block';
+                            helpText.style.color = '#d93025';
+                            helpText.style.fontWeight = '600';
+                        } else {
+                            helpText.style.display = 'block';
+                            helpText.style.color = '#5f6368';
+                            helpText.style.fontWeight = 'normal';
+                        }
+                    }
+                }
+
                 if (this.classList.contains('error')) {
                     validateField(this);
                 }
@@ -742,18 +759,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function validateField(field) {
         const errorMessage = field.parentNode.querySelector('.error-message');
-        
+
         if (errorMessage) {
             errorMessage.remove();
         }
-        
+
         field.classList.remove('error');
-        
+
         if (field.hasAttribute('required') && !field.value.trim()) {
             showFieldError(field, 'هذا الحقل مطلوب');
             return false;
         }
-        
+
+        // Special validation for fullName field - check minimum 3 words
+        if (field.id === 'fullName' && field.value.trim()) {
+            const words = field.value.trim().split(/\s+/);
+            if (words.length < 3) {
+                showFieldError(field, 'يجب إدخال 3 كلمات على الأقل (بالعربية أو الإنجليزية)');
+                return false;
+            }
+        }
+
         return true;
     }
 
