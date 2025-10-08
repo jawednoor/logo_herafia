@@ -1,0 +1,807 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #2c3e50;
+    line-height: 1.6;
+    direction: rtl;
+    text-align: right;
+    font-size: 18px; /* Increased font size */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+}
+
+/* Container - No sticky positioning */
+.form-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Form Header - Enhanced styling with new colors */
+.form-header {
+    background: linear-gradient(135deg, #1f71b7 0%, #0d4a73 100%);
+    color: white;
+    padding: 32px 20px;
+    text-align: center;
+    position: relative;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 4px 20px rgba(31, 113, 183, 0.3);
+}
+
+.form-title {
+    font-size: 2.2rem; /* Increased for better readability for 35+ age group */
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: 'Cairo', sans-serif;
+    line-height: 1.3;
+}
+
+.form-description {
+    font-size: 1.4rem; /* Increased font size for target age group */
+    opacity: 0.95;
+    font-weight: 500;
+    line-height: 1.5;
+    font-family: 'Cairo', sans-serif;
+}
+
+/* Form Sections - Enhanced with separators */
+.survey-form {
+    padding: 0;
+}
+
+.form-section {
+    padding: 28px 20px; /* Increased padding */
+    border-bottom: 3px solid #e8f4fd;
+    background: linear-gradient(to bottom, #ffffff 0%, #f0f8ff 100%);
+    position: relative;
+}
+
+.form-section:nth-child(odd) {
+    background: linear-gradient(to bottom, #f0f8ff 0%, #ffffff 100%);
+}
+
+.form-section:last-child {
+    border-bottom: none;
+    border-radius: 0 0 16px 16px;
+}
+
+.form-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 20px;
+    left: 20px;
+    height: 3px; /* Thicker separator line */
+    background: linear-gradient(90deg, #1f71b7 0%, #f58220 50%, #1f71b7 100%);
+}
+
+.section-title {
+    font-size: 1.8rem; /* Increased font size for better readability */
+    font-weight: 700;
+    color: white;
+    margin-bottom: 24px;
+    padding: 24px 20px; /* Increased padding */
+    background: linear-gradient(135deg, #1f71b7 0%, #0d4a73 100%);
+    color: white;
+    border-radius: 12px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(31, 113, 183, 0.3);
+    font-family: 'Cairo', sans-serif;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Form Groups - Enhanced styling */
+.form-group {
+    margin-bottom: 28px; /* Increased spacing */
+    padding: 20px; /* Increased padding */
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    border: 1px solid #e3f2fd;
+    transition: all 0.3s ease;
+}
+
+.form-group:hover {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: #1f71b7; /* Updated to primary color */
+    box-shadow: 0 4px 12px rgba(31, 113, 183, 0.15);
+}
+
+.form-group.required {
+    border-left: 4px solid #f58220; /* Using secondary color for required fields */
+}
+
+.form-group.required label::after {
+    content: " *";
+    color: #f58220; /* Using secondary color for required asterisk */
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+label {
+    display: block;
+    font-size: 1.4rem; /* Increased font size for 35+ age group */
+    font-weight: 600;
+    color: #282828; /* Updated to new primary text color */
+    margin-bottom: 14px;
+    line-height: 1.5;
+    font-family: 'Cairo', sans-serif;
+}
+
+/* Input Styles - Enhanced */
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+    width: 100%;
+    padding: 18px 16px; /* Increased padding for better touch */
+    border: 2px solid #bdc3c7;
+    border-radius: 10px;
+    font-size: 1.2rem; /* Increased font for 35+ age group */
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(to bottom, #ffffff 0%, #f8fbff 100%);
+    transition: all 0.3s ease;
+    direction: rtl;
+    text-align: right;
+    min-height: 56px; /* Increased touch target */
+    color: #282828; /* Updated text color */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #1f71b7; /* Updated to primary color */
+    box-shadow: 0 0 0 3px rgba(31, 113, 183, 0.2);
+    background: white;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Phone Number Field - White Background with Black Text */
+input[type="tel"]#phoneNumber {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 2px solid #bdc3c7;
+}
+
+input[type="tel"]#phoneNumber:focus {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #1f71b7;
+    box-shadow: 0 0 0 3px rgba(31, 113, 183, 0.2);
+}
+
+input[type="tel"]#phoneNumber::placeholder {
+    color: #666666 !important;
+}
+
+/* Color Input Groups - Enhanced */
+.color-input-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-direction: row-reverse; /* RTL layout */
+    flex-wrap: wrap;
+}
+
+.color-picker {
+    width: 50px !important;
+    height: 50px !important;
+    border: 2px solid #1f71b7;
+    border-radius: 12px;
+    cursor: pointer;
+    background: none;
+    padding: 0;
+    outline: none;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.color-picker::-webkit-color-swatch-wrapper {
+    padding: 3px;
+    border-radius: 8px;
+}
+
+.color-picker::-webkit-color-swatch {
+    border: none;
+    border-radius: 6px;
+}
+
+.color-picker::-moz-color-swatch {
+    border: none;
+    border-radius: 6px;
+}
+
+.color-picker:hover,
+.color-picker:focus {
+    border-color: #f58220;
+    box-shadow: 0 0 0 3px rgba(245, 130, 32, 0.2);
+    transform: scale(1.1);
+}
+
+/* Multiple color pickers in one group */
+.color-input-group:has(.color-picker + .color-picker) {
+    gap: 6px;
+}
+
+.color-input-group:has(.color-picker + .color-picker) .color-picker {
+    width: 45px !important;
+    height: 45px !important;
+}
+
+.color-input-group input[type="text"] {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.95) !important;
+    cursor: pointer;
+    min-width: 200px;
+}
+
+::placeholder {
+    color: #9aa0a6;
+    opacity: 1;
+}
+
+/* File Input - Mobile Optimized */
+input[type="file"] {
+    width: 100%;
+    padding: 16px 12px;
+    border: 2px dashed #dadce0;
+    border-radius: 8px;
+    background-color: #fafbfc;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    min-height: 48px;
+}
+
+input[type="file"]:hover,
+input[type="file"]:active {
+    border-color: #673ab7;
+    background-color: #f8f5ff;
+}
+
+/* File Upload Groups - Enhanced */
+.file-upload-group {
+    margin-bottom: 16px;
+    padding: 12px;
+    border: 1px solid #e1e8ed;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.file-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #1f71b7;
+    font-size: 1.1rem;
+}
+
+/* Google Drive Link Section */
+.google-drive-link {
+    margin-top: 20px;
+    padding: 16px;
+    background: linear-gradient(135deg, #f8fbff 0%, #e8f4ff 100%);
+    border: 1px solid #1f71b7;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.drive-text {
+    margin: 0 0 12px 0;
+    color: #282828;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.drive-link {
+    display: inline-block;
+    background: #1f71b7;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+}
+
+.drive-link:hover {
+    background: #f58220;
+    transform: translateY(-2px);
+}
+
+.google-drive-link input[type="url"] {
+    margin-top: 8px;
+    background: white;
+    border: 2px solid #1f71b7;
+}
+
+/* Upload Instructions */
+.upload-instructions {
+    background: linear-gradient(135deg, #e8f4ff 0%, #f0f8ff 100%);
+    border: 1px solid #1f71b7;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.upload-instructions h4 {
+    color: #1f71b7;
+    margin: 0 0 12px 0;
+    font-size: 1.1rem;
+}
+
+.upload-instructions ol {
+    margin: 0;
+    padding-right: 20px;
+    color: #282828;
+}
+
+.upload-instructions li {
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+/* Folder Link Container */
+.folder-link-container {
+    background: linear-gradient(135deg, #e8f5e8 0%, #f0fff0 100%);
+    border: 2px solid #4caf50;
+    border-radius: 10px;
+    padding: 16px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.folder-link-container h4 {
+    color: #2e7d32;
+    margin: 0 0 12px 0;
+    font-size: 1.2rem;
+}
+
+.folder-link {
+    display: inline-block;
+    background: #4caf50;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+}
+
+.folder-link:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+}
+
+.folder-link-container p {
+    color: #2e7d32;
+    margin: 8px 0 0 0;
+    font-size: 0.95rem;
+}
+
+.help-text {
+    display: block;
+    font-size: 0.8rem;
+    color: #5f6368;
+    margin-top: 6px;
+    line-height: 1.3;
+}
+
+/* Color help text - Enhanced styling */
+.color-help {
+    color: #1f71b7;
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-top: 0;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.color-help::before {
+    content: "👆";
+    font-size: 1rem;
+}
+
+/* Radio and Checkbox Groups - Enhanced */
+.radio-group,
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Single column for mobile - remove two columns */
+.checkbox-group.two-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.radio-label,
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem; /* Increased font size for 35+ age group */
+    color: #ffffff; /* Much darker text for better contrast */
+    cursor: pointer;
+    padding: 18px 16px; /* Increased padding */
+    margin-bottom: 8px; /* Added spacing between options */
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    min-height: 60px; /* Increased touch target */
+    background: #ffffff; /* Pure white background for better contrast */
+    border: 2px solid #1f71b7; /* Clear border with primary color */
+    font-weight: 600; /* Bolder text for better visibility */
+    font-family: 'Cairo', sans-serif;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.radio-label:hover,
+.checkbox-label:hover,
+.radio-label:active,
+.checkbox-label:active {
+    color: #1f71b7; /* Updated to primary color */
+    background: #f0f8ff; /* Light blue background on hover */
+    border-color: #f58220; /* Orange border on hover for better visibility */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(31, 113, 183, 0.2);
+}
+
+/* Custom Radio Buttons - Enhanced contrast */
+.radio-custom {
+    width: 28px; /* Larger size for better visibility */
+    height: 28px;
+    border: 3px solid #1f71b7; /* Primary color border, thicker */
+    border-radius: 50%;
+    margin-left: 12px;
+    position: relative;
+    background: white; /* White background */
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + .radio-custom {
+    border-color: #1f71b7;
+    background: #1f71b7; /* Fill with primary color when checked */
+}
+
+input[type="radio"]:checked + .radio-custom::after {
+    content: '';
+    width: 12px; /* Larger inner circle */
+    height: 12px;
+    background-color: white; /* White center for contrast */
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Custom Checkboxes - Enhanced contrast */
+.checkbox-custom {
+    width: 26px; /* Larger size */
+    height: 26px;
+    border: 3px solid #1f71b7; /* Primary color border, thicker */
+    border-radius: 6px; /* Slightly more rounded */
+    margin-left: 12px;
+    position: relative;
+    background: white; /* White background */
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"]:checked + .checkbox-custom {
+    border-color: #1f71b7;
+    background-color: #1f71b7; /* Primary color background when checked */
+}
+
+input[type="checkbox"]:checked + .checkbox-custom::after {
+    content: '✓';
+    color: white; /* White checkmark for contrast */
+    font-size: 16px; /* Larger checkmark */
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Enhanced selected state styling */
+.radio-label:has(input[type="radio"]:checked),
+.checkbox-label:has(input[type="checkbox"]:checked) {
+    background: #e8f4fd !important; /* Light blue background for selected */
+    border-color: #f58220 !important; /* Orange border for selected items */
+    color: #1f71b7 !important; /* Primary color text */
+    font-weight: 700 !important; /* Bold selected text */
+    box-shadow: 0 4px 12px rgba(31, 113, 183, 0.3) !important;
+}
+
+/* Alternative styling for selected items (JavaScript will add this class) */
+.radio-label.selected,
+.checkbox-label.selected {
+    background: #e8f4fd !important;
+    border-color: #f58220 !important;
+    color: #1f71b7 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 12px rgba(31, 113, 183, 0.3) !important;
+}
+
+/* Submit Section - No sticky positioning */
+.form-submit {
+    padding: 32px 20px;
+    background: linear-gradient(135deg, #f8fbff 0%, #e3f2fd 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative; /* Remove sticky */
+    border-radius: 0 0 16px 16px;
+}
+
+.submit-btn,
+.reset-btn {
+    padding: 18px 24px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 56px;
+    width: 100%;
+    font-family: 'Cairo', sans-serif;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #1f71b7 0%, #0d4a73 100%);
+    color: white;
+    order: 1;
+    box-shadow: 0 6px 20px rgba(31, 113, 183, 0.3);
+    font-size: 1.3rem; /* Increased font size for better readability */
+    font-weight: 700;
+    min-height: 60px; /* Increased touch target */
+}
+
+.submit-btn:hover,
+.submit-btn:active {
+    background: linear-gradient(135deg, #0d4a73 0%, #083553 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(31, 113, 183, 0.4);
+}
+
+.submit-btn:active {
+    transform: translateY(0px);
+}
+
+.submit-btn:disabled {
+    background: linear-gradient(135deg, #bdc3c7 0%, #95a5a6 100%);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.reset-btn {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+    color: #1f71b7; /* Updated to primary color */
+    border: 2px solid #1f71b7;
+    order: 2;
+    font-size: 1.2rem; /* Increased font size */
+    font-weight: 600;
+    min-height: 60px; /* Increased touch target */
+}
+
+.reset-btn:hover,
+.reset-btn:active {
+    background: linear-gradient(135deg, #f0f7ff 0%, #e3f2fd 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(31, 113, 183, 0.2);
+}
+
+/* Mobile-Only Optimizations for 35+ Age Group */
+
+/* Prevent zoom on input focus (iOS) with larger base font */
+input, textarea, select {
+    font-size: 18px !important; /* Minimum 18px to prevent zoom on iOS */
+    transform-origin: left top;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Better touch scrolling */
+body {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+    font-size: 18px; /* Base font size for better readability */
+    color: #282828; /* Updated text color */
+}
+
+/* Reduce spacing for mobile but maintain readability */
+textarea {
+    resize: vertical;
+    min-height: 120px; /* Increased height */
+    line-height: 1.5; /* Better line spacing */
+    font-size: 1.2rem; /* Larger font for better readability */
+}
+
+/* Loading states for mobile */
+.submit-btn.loading {
+    position: relative;
+    color: transparent;
+}
+
+.submit-btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Animation for showing/hiding elements */
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Validation Styles - Mobile Friendly */
+.error {
+    border-color: #d93025 !important;
+    box-shadow: 0 2px 6px rgba(217, 48, 37, 0.3) !important;
+}
+
+.error-message {
+    color: #d93025;
+    font-size: 0.95rem; /* Slightly increased */
+    font-weight: 500;
+    margin-top: 8px;
+    display: block;
+    line-height: 1.4;
+    font-family: 'Cairo', sans-serif;
+}
+
+.success-message {
+    background: linear-gradient(135deg, #e8f5e8 0%, #f0fdf4 100%);
+    color: #137333;
+    padding: 20px 24px;
+    border-radius: 12px;
+    border: 2px solid #34a853;
+    margin: 20px;
+    text-align: center;
+    font-size: 1.1rem; /* Increased font size */
+    font-weight: 600;
+    line-height: 1.5;
+    box-shadow: 0 4px 15px rgba(52, 168, 83, 0.2);
+    font-family: 'Cairo', sans-serif;
+}
+
+.error-message-main {
+    background: linear-gradient(135deg, #fce8e6 0%, #fef2f2 100%);
+    color: #d93025;
+    padding: 20px 24px;
+    border-radius: 12px;
+    border: 2px solid #ea4335;
+    margin: 20px;
+    text-align: center;
+    font-size: 1.1rem; /* Increased font size */
+    font-weight: 600;
+    line-height: 1.5;
+    box-shadow: 0 4px 15px rgba(234, 67, 53, 0.2);
+    font-family: 'Cairo', sans-serif;
+}
+
+/* Safe area for phones with notches */
+.form-header {
+    padding-top: max(24px, env(safe-area-inset-top));
+}
+
+.form-submit {
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+}
+
+/* Focus styles for accessibility and better visibility for 35+ age group */
+input:focus,
+textarea:focus,
+.radio-label:focus-within,
+.checkbox-label:focus-within {
+    outline: 3px solid #f58220; /* Using secondary color for better visibility */
+    outline-offset: 3px;
+}
+
+/* Enhanced contrast for error states */
+.error-message {
+    color: #d93025;
+    font-size: 1.1rem; /* Increased for better readability */
+    font-weight: 600; /* Bold for better visibility */
+    margin-top: 10px;
+    display: block;
+    line-height: 1.5;
+    font-family: 'Cairo', sans-serif;
+    background: rgba(217, 48, 37, 0.1);
+    padding: 8px 12px;
+    border-radius: 6px;
+    border-left: 4px solid #d93025;
+}
+
+/* Dark mode support for mobile */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+    
+    .form-container {
+        background: #1e1e1e;
+    }
+    
+    .form-section {
+        border-bottom-color: #333;
+    }
+    
+    input, textarea {
+        background-color: #2d2d2d;
+        border-color: #555;
+        color: #1b1a1a;
+    }
+    
+    .radio-label, .checkbox-label {
+        background-color: #f7f2f2;
+        border-color: #ebe3e3;
+        color: #282828;
+    }
+}

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#673ab7">
+    <meta name="format-detection" content="telephone=no">
+    <title>استبيان تصميم شعار</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <h1 class="form-title">نموذج استبيان تصميم شعار</h1>
+            <p class="form-description">يرجى ملء جميع الحقول المطلوبة لمساعدتنا في تصميم الشعار المثالي لك</p>
+        </div>
+
+        <form id="logoSurveyForm" class="survey-form">
+            <!-- Section 1: General Information -->
+            <div class="form-section">
+                <h2 class="section-title">1. المعلومات العامة</h2>
+                
+                <div class="form-group required">
+                    <label for="fullName">الاسم الرباعي</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="الاسم الأول الثاني الثالث الرابع">
+                </div>
+
+                <div class="form-group required">
+                    <label for="phoneNumber">رقم الجوال</label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" required placeholder="05xxxxxxxx" pattern="[0-9]{10}" maxlength="10">
+                    <small class="help-text">يرجى إدخال رقم الجوال مكون من 10 أرقام</small>
+                </div>
+
+                <div class="form-group required">
+                    <label for="brandName">اسم المشروع (Brand Name)</label>
+                    <input type="text" id="brandName" name="brandName" required>
+                </div>
+
+                <div class="form-group required">
+                    <label>هل يوجد شعار سابق؟</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="hasExistingLogo" value="yes" required>
+                            <span class="radio-custom"></span>
+                            نعم
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="hasExistingLogo" value="no" required>
+                            <span class="radio-custom"></span>
+                            لا
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group" id="existingLogoDetails" style="display: none;">
+                    <label for="existingLogoChanges">إذا كانت الإجابة نعم، يرجى توضيح ما الذي ترغب بتغييره فيه</label>
+                    <textarea id="existingLogoChanges" name="existingLogoChanges" rows="3" placeholder="اكتب التغييرات المطلوبة..."></textarea>
+                </div>
+
+                <div class="form-group" id="logoUpload" style="display: none;">
+                    <label for="existingLogoFile">إرفاق الشعار السابق</label>
+                    <input type="file" id="existingLogoFile" name="existingLogoFile" accept="image/*,.pdf">
+                    <small class="help-text">يرجى رفع الشعار الحالي بصيغة صورة (JPG, PNG, GIF) أو PDF</small>
+                </div>
+            </div>
+
+            <!-- Section 2: Business Activity -->
+            <div class="form-section">
+                <h2 class="section-title">2. النشاط التجاري</h2>
+                
+                <div class="form-group required">
+                    <label for="businessType">نوع النشاط / المجال</label>
+                    <input type="text" id="businessType" name="businessType" required placeholder="مثلاً: حلويات منزلية – خياطة وتطريز – صناعة يدوية – طبخ منزلي – أعمال فنية">
+                </div>
+
+                <div class="form-group required">
+                    <label for="businessDescription">وصف بسيط للنشاط أو الخدمات المقدّمة</label>
+                    <textarea id="businessDescription" name="businessDescription" rows="4" required placeholder="اكتب وصفاً مختصراً لمشروعك... مثلاً: تحضير الحلويات المنزلية للمناسبات، خياطة الملابس النسائية، صناعة الإكسسوارات اليدوية..."></textarea>
+                </div>
+
+                <div class="form-group required">
+                    <label>الفئة المستهدفة (العملاء)</label>
+                    <div class="checkbox-group two-columns">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="housewives">
+                            <span class="checkbox-custom"></span>
+                            ربات البيوت
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="mothers">
+                            <span class="checkbox-custom"></span>
+                            الأمهات
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="cooking-lovers">
+                            <span class="checkbox-custom"></span>
+                            محبي الطبخ المنزلي
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="handcraft-lovers">
+                            <span class="checkbox-custom"></span>
+                            عشاق الحرف اليدوية
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="occasions">
+                            <span class="checkbox-custom"></span>
+                            المناسبات والأفراح
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="brides">
+                            <span class="checkbox-custom"></span>
+                            العرائس
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="families">
+                            <span class="checkbox-custom"></span>
+                            العائلات
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="children">
+                            <span class="checkbox-custom"></span>
+                            الأطفال
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="youth">
+                            <span class="checkbox-custom"></span>
+                            الشباب
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="elderly">
+                            <span class="checkbox-custom"></span>
+                            كبار السن
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="working-women">
+                            <span class="checkbox-custom"></span>
+                            المرأة العاملة
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="students">
+                            <span class="checkbox-custom"></span>
+                            الطلاب والطالبات
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="teachers">
+                            <span class="checkbox-custom"></span>
+                            المعلمات
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="healthy-lifestyle">
+                            <span class="checkbox-custom"></span>
+                            محبي الأكل الصحي
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="fitness-lovers">
+                            <span class="checkbox-custom"></span>
+                            محبي الرياضة واللياقة
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="beauty-lovers">
+                            <span class="checkbox-custom"></span>
+                            محبي التجميل والعناية
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="home-decorators">
+                            <span class="checkbox-custom"></span>
+                            محبي الديكور المنزلي
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="gift-seekers">
+                            <span class="checkbox-custom"></span>
+                            باحثين عن الهدايا
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="entrepreneurs">
+                            <span class="checkbox-custom"></span>
+                            رائدات الأعمال
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="targetAudience" value="general-public">
+                            <span class="checkbox-custom"></span>
+                            عامة الناس
+                        </label>
+                    </div>
+                    <small class="help-text">يرجى اختيار فئة واحدة على الأقل من الفئات المستهدفة</small>
+                </div>
+            </div>
+
+            <!-- Section 3: Logo Details -->
+            <div class="form-section">
+                <h2 class="section-title">3. تفاصيل الشعار</h2>
+                
+                <div class="form-group required">
+                    <label>نوع الشعار المطلوب</label>
+                    <div class="checkbox-group two-columns">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="logoType" value="text">
+                            <span class="checkbox-custom"></span>
+                            الشعار النصي
+                            <span style="display:inline-block; width:10px;"></span>
+                            <img src="IMG/logo 1.png" style="max-width:60px; margin-top:0; border-radius:6px; border:1px solid #eee; vertical-align:middle;">
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="logoType" value="symbol">
+                            <span class="checkbox-custom"></span>
+                            الشعار الرمزي
+                         <span style="display:inline-block; width:10px;"></span>
+                            <img src="IMG/logo 2.png" style="max-width:60px; margin-top:0; border-radius:6px; border:1px solid #eee; vertical-align:middle;">
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="logoType" value="combination">
+                            <span class="checkbox-custom"></span>
+                            مزيج نص ورمز  
+                            <span style="display:inline-block; width:10px;"></span>
+                            <img src="IMG/logo 3.png" style="max-width:80px; margin-top:0; border-radius:6px; border:1px solid #eee; vertical-align:middle;">
+                        </label>                        <label class="checkbox-label">
+                            <input type="checkbox" name="logoType" value="abbreviated">
+                            <span class="checkbox-custom"></span>
+                            الشعار الحرفي
+                        <span style="display:inline-block; width:10px;"></span>
+                            <img src="IMG/logo 4.png" style="max-width:80px; margin-top:0; border-radius:6px; border:1px solid #eee; vertical-align:middle;">
+                        </label>                    </div>
+                    <small class="help-text">يرجى اختيار نوع واحد على الأقل</small>
+                </div>
+
+            </div>
+
+            <!-- Section 4: Colors and Design -->
+            <div class="form-section">
+                <h2 class="section-title">4. الألوان والتصميم</h2>
+                
+                <div class="form-group required">
+                    <label for="primaryColors">الألوان المفضّلة الأساسية</label>
+                    <small class="help-text color-help">اختر لونين أساسيين - اضغط على المربعات الملونة</small>
+                    <div class="color-input-group">
+                        <input type="color" id="primaryColorsColor1" class="color-picker" value="#1f71b7">
+                        <input type="color" id="primaryColorsColor2" class="color-picker" value="#0d4a73">
+                        <input type="text" id="primaryColors" name="primaryColors" required placeholder="سيظهر اللونان المختاران هنا..." readonly>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="secondaryColors">الألوان الثانوية المفضّلة</label>
+                    <small class="help-text color-help">اختر لونين ثانويين - اضغط على المربعات الملونة</small>
+                    <div class="color-input-group">
+                        <input type="color" id="secondaryColorsColor1" class="color-picker" value="#f58220">
+                        <input type="color" id="secondaryColorsColor2" class="color-picker" value="#ff9f4a">
+                        <input type="text" id="secondaryColors" name="secondaryColors" placeholder="سيظهر اللونان المختاران هنا..." readonly>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="avoidColors">ألوان ترغب بتجنّبها</label>
+                    <small class="help-text color-help">اضغط على المربع الملون لاختيار اللون المرفوض</small>
+                    <div class="color-input-group">
+                        <input type="color" id="avoidColorsColor" class="color-picker" value="#ff0000">
+                        <input type="text" id="avoidColors" name="avoidColors" placeholder="الألوان التي لا تريدها في الشعار..." readonly>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5: General Style -->
+            <div class="form-section">
+                <h2 class="section-title">5. الطابع العام للشعار</h2>
+                
+                <div class="form-group required">
+                    <label>اختر الطابع الذي تريده</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="logoStyle" value="luxury" required>
+                            <span class="radio-custom"></span>
+                            فاخر
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="logoStyle" value="minimal" required>
+                            <span class="radio-custom"></span>
+                            بسيط / Minimal
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="logoStyle" value="modern" required>
+                            <span class="radio-custom"></span>
+                            عصري
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="logoStyle" value="classic" required>
+                            <span class="radio-custom"></span>
+                            كلاسيكي
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="logoStyle" value="youthful" required>
+                            <span class="radio-custom"></span>
+                            شبابي
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="logoStyle" value="formal" required>
+                            <span class="radio-custom"></span>
+                            رسمي
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="logoStyle" value="playful" required>
+                            <span class="radio-custom"></span>
+                            مرح
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 6: Expected Usage -->
+            <div class="form-section">
+                <h2 class="section-title">6. الاستخدامات المتوقعة</h2>
+                
+                <div class="form-group required">
+                    <label>أين سيُستخدم الشعار غالباً؟</label>
+                    <div class="checkbox-group two-columns">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="logoUsage" value="social-media">
+                            <span class="checkbox-custom"></span>
+                            على السوشيال ميديا
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="logoUsage" value="website">
+                            <span class="checkbox-custom"></span>
+                            على الموقع الإلكتروني
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="logoUsage" value="business-cards">
+                            <span class="checkbox-custom"></span>
+                            على بطاقات العمل والفواتير
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="logoUsage" value="storefront">
+                            <span class="checkbox-custom"></span>
+                            على واجهة المتجر أو اللوحات
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="logoUsage" value="products">
+                            <span class="checkbox-custom"></span>
+                            على المنتجات أو التغليف
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="logoUsage" value="promotional">
+                            <span class="checkbox-custom"></span>
+                            على المواد الدعائية والإعلانية
+                        </label>
+                    </div>
+                    <small class="help-text">يرجى اختيار استخدام واحد على الأقل</small>
+                </div>
+            </div>
+
+            <!-- Section 7: Additional Notes -->
+            <div class="form-section">
+                <h2 class="section-title">7. ملاحظات إضافية</h2>
+                
+                <div class="form-group">
+                    <label for="additionalNotes">أي تفاصيل أخرى تود إضافتها أو أفكار لديك بخصوص التصميم؟</label>
+                    <textarea id="additionalNotes" name="additionalNotes" rows="4" placeholder="أي ملاحظات أو أفكار إضافية..."></textarea>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-submit">
+                <button type="submit" class="submit-btn">إرسال الاستبيان</button>
+                <button type="reset" class="reset-btn">مسح الاستبيان</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
